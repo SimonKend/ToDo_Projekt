@@ -1,34 +1,22 @@
 package model;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 
 public class DataHandler {
-    private LinkedList<String> listEingelesen = new LinkedList<>();
-    private LinkedList<String> listBerechnet = new LinkedList<>();
+    private HashSet<User> usersSet = new HashSet<>();
 
 
-    public String printList() {
-        String str = "";
-        for (String x : listEingelesen) {
-            str += x;
-            str += "\n";
+//vielleicht für später (ist jetzt einmal egal):
+/*
+    public String printUsers() {
+        StringBuilder sb = new StringBuilder();
+
+        for (User x : usersSet) {
+            sb.append(x);
+            sb.append("\n");
         }
-        return str;
+        return sb.toString();
     }
-
-    public LinkedList<String> getListBerechnet() {
-        return listBerechnet;
-    }
-
-    public void setListBerechnet(LinkedList<String> listBerechnet) {
-        this.listBerechnet = listBerechnet;
-    }
-
-    public LinkedList<String> getListEingelesen() {
-        return listEingelesen;
-    }
-
-    public void setListEingelesen(LinkedList<String> listEingelesen) {
-        this.listEingelesen = listEingelesen;
-    }
+*/
 }

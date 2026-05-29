@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.Label;
 import model.DataHandler;
 import model.FileHandler;
 
@@ -14,47 +14,28 @@ import java.util.ResourceBundle;
 
 public class Controller_logged_in_user implements Initializable {
     String datei_users = "D:\\SIMON\\3BHIT\\SEW\\Üben\\4. PLF\\Ueben_1\\src\\datei.txt";
-//    String dateiZiel = "D:\\SIMON\\3BHIT\\SEW\\Üben\\4. PLF\\Ueben_1\\src\\dateiZiel.txt";
 
     DataHandler dataHandler;
     FileHandler fileHandler;
-    @FXML
-    private TextArea textArea;
-    @FXML
-    private Button btnCalc;
 
     @FXML
-    private Button btnLoad;
+    private Button btnLogout;
 
     @FXML
-    private Button btnSave;
-
-
-    @FXML
-    void btnLoadPressed(ActionEvent event) {
-        String str;
-        dataHandler.setListEingelesen(fileHandler.dateiEinlesen(datei_users));
-        str = dataHandler.getListEingelesen().toString();
-        textArea.setText(dataHandler.printList());
-    }
+    private Label labelWelcomeMessage;
 
     @FXML
-    void btnCalcPressed(ActionEvent event) throws IOException {
+    void btnLogoutPressed(ActionEvent event) throws IOException {
+        //Scene wechsel
         main.Main.loadScene("/viewctrl/login.fxml");
 
+        //Title ändern
+        main.Main.getPrimaryStage().setTitle("ToDo-Project: Login");
     }
 
-
-    @FXML
-    void btnSavePressed(ActionEvent event) {
-
-//        fileHandler.dateiSchreiben(dateiZiel, dataHandler.getListBerechnet());
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String hallo = "aölkjsdf";
-        System.out.println(hallo.matches("[n]"));
         dataHandler = new DataHandler();
         fileHandler = new FileHandler();
     }

@@ -31,35 +31,16 @@ public class Controller_login implements Initializable {
     private TextField tfUsername;
 
     @FXML
-    void btnLoginPressed(ActionEvent event) {
+    void btnLoginPressed(ActionEvent event) throws IOException {
+        //Scene wechsel
+        main.Main.loadScene("/viewctrl/logged_in_user.fxml");
 
+        //Title ändern
+        main.Main.getPrimaryStage().setTitle("ToDo-Project: logged in as Username");
     }
-
-//    @FXML
-//    void btnLoadPressed(ActionEvent event) {
-//        String str;
-//        dataHandler.setListEingelesen(fileHandler.dateiEinlesen(datei_users));
-//        str = dataHandler.getListEingelesen().toString();
-//        textArea.setText(dataHandler.printList());
-//    }
-//
-//    @FXML
-//    void btnCalcPressed(ActionEvent event) throws IOException {
-//        main.Main.loadScene("/viewctrl/logged_in_user.fxml");
-//
-//    }
-
-
-//    @FXML
-//    void btnLoginPressed(ActionEvent event) {
-//
-////        fileHandler.dateiSchreiben(dateiZiel, dataHandler.getListBerechnet());
-//    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String hallo = "aölkjsdf";
-        System.out.println(hallo.matches("[n]"));
         dataHandler = new DataHandler();
         fileHandler = new FileHandler();
     }

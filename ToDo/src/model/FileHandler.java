@@ -1,11 +1,14 @@
 package model;
 
 import java.io.*;
-import java.util.Arrays;
+
 import java.util.LinkedList;
 
 
 public class FileHandler {
+//falsch
+/*
+
     public LinkedList<String> dateiEinlesen(String datei) {
         LinkedList<String> meineList = new LinkedList<>();
 
@@ -41,4 +44,7 @@ public class FileHandler {
             System.out.println(ex.getMessage());
         }
     }
+
+
+*/
 }
