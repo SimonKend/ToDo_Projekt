@@ -13,6 +13,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller_logged_in_user implements Initializable {
+    String datei_users = "users.txt";
+
     DataHandler dataHandler;
     FileHandler fileHandler;
 

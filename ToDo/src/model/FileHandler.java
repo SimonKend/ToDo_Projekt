@@ -2,43 +2,31 @@ package model;
 
 import java.io.*;
 
-import java.util.LinkedList;
-
-
 public class FileHandler {
-//falsch
-/*
 
-    public LinkedList<String> dateiEinlesen(String datei) {
-        LinkedList<String> meineList = new LinkedList<>();
+    public String dateiEinlesen(String datei) {
+        String strDateiInhalt = "";
 
         try (FileReader fr = new FileReader(datei)) {
             int x = 0;
-            String str = "";
 
             while ((x = fr.read()) != -1) {
-                str += (char) x;
+                strDateiInhalt += (char) x;
             }
 
-            System.out.println(str);
-            String[] arr = str.split(";");
-            for (String s : arr) {
-                meineList.add(s);
-            }
+//            System.out.println("Dateiinhalt: " + strDateiInhalt);
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        System.out.println("Liste:" + meineList);
-        return meineList;
+        return strDateiInhalt;
     }
 
-
-    public void dateiSchreiben(String dateiZiel, LinkedList<String> list) {
+//Datei schreiben mit einem FileWriter
+    /*
+    public void dateiSchreiben(String dateiZiel, HashSet<User> setUsers) {
         try (FileWriter fw = new FileWriter(dateiZiel)) {
-            for (int i = 0; i < list.size(); i++) {
-                fw.write(list.get(i));
-            }
+
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
