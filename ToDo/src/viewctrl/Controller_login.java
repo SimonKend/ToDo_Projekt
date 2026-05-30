@@ -20,6 +20,7 @@ public class Controller_login implements Initializable {
     DataHandler dataHandler;
     FileHandler fileHandler;
 
+
     @FXML
     private Button btnLogin;
 
@@ -32,16 +33,21 @@ public class Controller_login implements Initializable {
     @FXML
     void btnLoginPressed(ActionEvent event) throws IOException {
         String message;
+
         message = dataHandler.checkUser(tfUsername.getText(), passwordField.getText()); //checkUser hat als Rückgabewert einen String
 
+
         if (message.equals("login successful.")) {
+            String loggedInUsername = tfUsername.getText();
+
+            dataHandler.setLoggedInUser(loggedInUsername);
             //Scene wechsel
-            main.Main.loadScene("/viewctrl/logged_in_user.fxml");
+            main.Main.loadScene("/viewctrl/logged_in_userView.fxml");
 
             //Title ändern
-            main.Main.getPrimaryStage().setTitle("ToDo-Project: logged in as Username");
+            main.Main.getPrimaryStage().setTitle("ToDo-Project: logged in as " + loggedInUsername);
         } else {
-            //alert!!!!
+            //alertBox!
             System.out.println("alert: " + message);
         }
     }
@@ -57,7 +63,7 @@ public class Controller_login implements Initializable {
         dataHandler.init(dateiInhalt);    //Als Parameter der init-Methode wird der Dateiinhalt übergeben
 
         //Zur Überprüfung
-        dataHandler.printSet();
-        System.out.println("Init durchgeführt.");
+//        dataHandler.printSet();
+        System.out.println("Init done.");
     }
 }
