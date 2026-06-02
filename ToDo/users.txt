@@ -1,3 +1,4 @@
 Max;PasswortMax
 Tobi;PasswortTobi
 admin;Fischergasse30
+Simon;Hallo123
