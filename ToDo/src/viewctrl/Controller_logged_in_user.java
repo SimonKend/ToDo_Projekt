@@ -5,8 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import model.DataHandler;
 import model.FileHandler;
+import model.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +25,12 @@ public class Controller_logged_in_user implements Initializable {
     private Label labelWelcomeMessage;
 
     @FXML
+    private ListView<String> listViewUsernames;
+
+    @FXML
+    private Label lblAdminHeader;
+
+    @FXML
     void btnLogoutPressed(ActionEvent event) throws IOException {
         dataHandler.setLoggedInUser("Username");
         //Scene wechsel
@@ -32,12 +40,20 @@ public class Controller_logged_in_user implements Initializable {
         main.Main.getPrimaryStage().setTitle("ToDo-Project: Login");
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        dataHandler = new DataHandler();
+        dataHandler = main.Main.getDataHandler();
         fileHandler = new FileHandler();
 
-        labelWelcomeMessage.setText("Hello, " + dataHandler.getLoggedInUser() + "! You are logged in!");
+        String aktuellerUser = dataHandler.getLoggedInUser();
+        labelWelcomeMessage.setText("Hello, " + aktuellerUser + "! You are logged in!");
+
+        if (aktuellerUser.equalsIgnoreCase("admin")) {
+            lblAdminHeader.setVisible(true);
+            listViewUsernames.setVisible(true);
+            for (User u : dataHandler.getUsersSet()) {
+                listViewUsernames.getItems().add(u.getUsername());
+            }
+        }
     }
 }

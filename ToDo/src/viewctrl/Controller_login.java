@@ -12,10 +12,12 @@ import model.FileHandler;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class Controller_login implements Initializable {
-    String datei_users = "../ToDo/users.txt";
+    String datei_users = "ToDo_einfaches_login/ToDo/users.txt";
 
     DataHandler dataHandler;
     FileHandler fileHandler;
@@ -32,6 +34,11 @@ public class Controller_login implements Initializable {
 
     @FXML
     void btnLoginPressed(ActionEvent event) throws IOException {
+        System.out.println(System.getProperty("user.dir"));
+        Path pfad = Paths.get("users.txt");
+        System.out.println(pfad);
+
+
         String message;
 
         message = dataHandler.checkUser(tfUsername.getText(), passwordField.getText()); //checkUser hat als Rückgabewert einen String
@@ -52,9 +59,15 @@ public class Controller_login implements Initializable {
         }
     }
 
+    @FXML
+    void btnGoToAddUserPressed(ActionEvent event) throws IOException {
+        main.Main.loadScene("/viewctrl/addUserView.fxml");
+        main.Main.getPrimaryStage().setTitle("ToDo-Project: Add User");
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        dataHandler = new DataHandler();
+        dataHandler = main.Main.getDataHandler();
         fileHandler = new FileHandler();
 
         //Es wird beim Programmstart die init-Methode aufgerufen
@@ -62,8 +75,5 @@ public class Controller_login implements Initializable {
         dateiInhalt = fileHandler.dateiEinlesen(datei_users);
         dataHandler.init(dateiInhalt);    //Als Parameter der init-Methode wird der Dateiinhalt übergeben
 
-        //Zur Überprüfung
-//        dataHandler.printSet();
-        System.out.println("Init done.");
     }
 }

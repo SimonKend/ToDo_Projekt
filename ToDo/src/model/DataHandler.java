@@ -6,19 +6,35 @@ public class DataHandler {
     private HashSet<User> usersSet = new HashSet<>();
     private String loggedInUser = "Username";
 
-    public void init(String dateiInhalt) { //Diese Methode befüllt das Set
-        String[] arr = dateiInhalt.split(";|\\R");      //RegEx Bedeutung: der String wird entweder bei einem ";" oder bei einem Zeilenumbruch (\\R) gesplitted
+    public void init(String dateiInhalt) {
+        if (dateiInhalt == null || dateiInhalt.trim().isEmpty()) {
+            return;
+        }
+        String[] zeilen = dateiInhalt.split("\\r?\\n");
 
-//        System.out.println("arr:" + Arrays.toString(arr));
+        for (int i = 0; i < zeilen.length; i++) {
+            String zeile = zeilen[i].trim();
+            if (zeile.isEmpty()) {
+                continue;
+            }
+            String[] userDaten = zeile.split(";");
 
-        for (int i = 0; i < arr.length; i += 2) {
-            addUser(arr[i], arr[i + 1]); //Es werden neue User hinzugefügt
+            if (userDaten.length == 2) {
+                String username = userDaten[0].trim();
+                String passwort = userDaten[1].trim();
+
+                addUser(username, passwort);
+            }
         }
     }
 
 
     public void addUser(String username, String passwortNichtGehashed) {
         usersSet.add(new User(username, passwortNichtGehashed));
+    }
+
+    public boolean addUserWithCheck(String username, String passwortNichtGehashed) {
+        return usersSet.add(new User(username, passwortNichtGehashed));
     }
 
     public String checkUser(String username, String passwortNichtGehashed) {   //Überprüft, ob der User existiert und ob das Passwort stimmt
@@ -48,7 +64,6 @@ public class DataHandler {
             System.out.println(x.toString());
         }
     }
-
 
     public HashSet<User> getUsersSet() {
         return usersSet;
