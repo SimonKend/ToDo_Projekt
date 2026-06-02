@@ -1,4 +1,4 @@
-Max;PasswortMax
-Tobi;PasswortTobi
-Tobi;PasswortDieserUsernameKommtZweiMalVor
+simon;hallo123
+Max;Mustermann
+adminn;Fischergasse30
 admin;Fischergasse30
