@@ -19,22 +19,44 @@ public class DataHandler {
             }
             String[] userDaten = zeile.split(";");
 
-            if (userDaten.length == 2) {
+            if (userDaten.length >= 2) {
+
                 String username = userDaten[0].trim();
                 String passwort = userDaten[1].trim();
 
-                addUser(username, passwort);
+                User u = new User(username, Integer.parseInt(passwort));
+
+                if (userDaten.length > 2) {
+
+                    String[] todos = userDaten[2].split(",");
+
+                    for (String todo : todos) {
+
+                        if (!todo.equals("")) {
+                            u.getUserToDos().add(new ToDo(todo));
+                        }
+                    }
+                }
+
+                usersSet.add(u);
             }
         }
     }
 
 
     public void addUser(String username, String passwortNichtGehashed) {
-        usersSet.add(new User(username, passwortNichtGehashed));
+        int passwortGehashed;
+        passwortGehashed = passwortNichtGehashed.hashCode();
+
+        usersSet.add(new User(username, passwortGehashed));
     }
 
     public boolean addUserWithCheck(String username, String passwortNichtGehashed) {
-        return usersSet.add(new User(username, passwortNichtGehashed));
+
+        int passwortGehashed;
+        passwortGehashed = passwortNichtGehashed.hashCode();
+
+        return usersSet.add(new User(username, passwortGehashed));
     }
 
     public String checkUser(String username, String passwortNichtGehashed) {   //Überprüft, ob der User existiert und ob das Passwort stimmt
@@ -45,10 +67,13 @@ public class DataHandler {
             return "Password is empty.";
         }
 
+        int passwortGehashed;
+        passwortGehashed = passwortNichtGehashed.hashCode();
+
         //Das Set durchlaufen
         for (User x : usersSet) {
             if (x.getUsername().equals(username)) {     //Username vergleichen
-                if (x.getPasswortNichtGehashed().equals(passwortNichtGehashed)) {       //Wenn Username passt: Passwort vergleichen
+                if (x.getPasswortGehashed() == passwortGehashed) {       //Wenn Username passt: Passwort vergleichen
                     return "login successful.";
                 } else {
                     return "Wrong password!";
@@ -57,6 +82,15 @@ public class DataHandler {
         }
         //Wenn gar kein Username übereinstimmt
         return "This user doesn't exist.";
+    }
+
+    public User getUser(String username) {
+        for (User x : usersSet) {
+            if (x.getUsername().equals(username)) {     //Username vergleichen
+                return x;
+            }
+        }
+        return null;
     }
 
     public void printSet() {

@@ -6,7 +6,8 @@ import java.util.LinkedList;
 
 public class User {
     private String username;
-    private String passwortNichtGehashed;
+    private int passwortGehashed;
+    private LinkedHashSet<ToDo> userToDos = new LinkedHashSet<>();
 
 //für später
 /*
@@ -16,14 +17,13 @@ public class User {
     private LocalDateTime geburtsdatum;
 
     // nur als Idee
-    private LinkedHashSet<ToDo> userToDos = new LinkedHashSet<>();
 
 */
 
 
-    public User(String username, String passwortNichtGehashed) {
+    public User(String username, int passwortGehashed) {
         setUsername(username);
-        setPasswortNichtGehashed(passwortNichtGehashed);
+        setPasswortGehashed(passwortGehashed);
     }
 
     public String getUsername() {
@@ -34,17 +34,12 @@ public class User {
         this.username = username;
     }
 
-    public String getPasswortNichtGehashed() {
-        return passwortNichtGehashed;
-    }
 
-    public void setPasswortNichtGehashed(String passwortNichtGehashed) {
-        this.passwortNichtGehashed = passwortNichtGehashed;
-    }
+
 
     @Override
     public String toString() {
-        return "Username: " + username + ", Passwort(nicht gehashed): " + passwortNichtGehashed;
+        return "Username: " + username + ", Passwort(Hash): " + passwortGehashed;
     }
 
     //equals-Methode
@@ -59,6 +54,22 @@ public class User {
         User usr = (User) obj;
         // Compare the data members and return accordingly
         return this.username.equals(usr.username);
+    }
+
+    public int getPasswortGehashed() {
+        return passwortGehashed;
+    }
+
+    public void setPasswortGehashed(int passwortGehashed) {
+        this.passwortGehashed = passwortGehashed;
+    }
+
+    public LinkedHashSet<ToDo> getUserToDos() {
+        return userToDos;
+    }
+
+    public void setUserToDos(LinkedHashSet<ToDo> userToDos) {
+        this.userToDos = userToDos;
     }
 
     @Override

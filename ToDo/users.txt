@@ -1,4 +1,3 @@
-simon;hallo123
-Max;Mustermann
-adminn;Fischergasse30
-admin;Fischergasse30
+simon;109441270
+Max;-1834305558
+admin;-1821428602

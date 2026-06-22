@@ -15,8 +15,6 @@ public class FileHandler {
                 strDateiInhalt += (char) x;
             }
 
-//            System.out.println("Dateiinhalt: " + strDateiInhalt);
-
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -25,25 +23,18 @@ public class FileHandler {
     public void dateiSchreiben(String dateiZiel, HashSet<User> setUsers) {
         try (FileWriter fw = new FileWriter(dateiZiel)) {
             for (User u : setUsers) {
-                // Format: username;passwort und ein Zeilenumbruch (\n)
-                fw.write(u.getUsername() + ";" + u.getPasswortNichtGehashed() + "\n");
+                String todoListe = "";
+
+                for(ToDo t : u.getUserToDos()){
+                    todoListe = todoListe + t.getName() + ",";
+                }
+
+                fw.write(u.getUsername() + ";" +
+                        u.getPasswortGehashed() + ";" +
+                        todoListe + "\n");
             }
         } catch (IOException ex) {
             System.out.println("Fehler beim Schreiben: " + ex.getMessage());
         }
     }
-
-//Datei schreiben mit einem FileWriter
-    /*
-    public void dateiSchreiben(String dateiZiel, HashSet<User> setUsers) {
-        try (FileWriter fw = new FileWriter(dateiZiel)) {
-
-
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-
-*/
 }
