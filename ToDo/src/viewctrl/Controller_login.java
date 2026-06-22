@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.DataHandler;
@@ -17,12 +18,14 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class Controller_login implements Initializable {
-    String datei_users = "ToDo_einfaches_login/ToDo/users.txt";
+    String datei_users = "users.txt";
+
 
     DataHandler dataHandler;
     FileHandler fileHandler;
 
-
+    @FXML
+    private Label lblStatus;
     @FXML
     private Button btnLogin;
 
@@ -49,19 +52,19 @@ public class Controller_login implements Initializable {
 
             dataHandler.setLoggedInUser(loggedInUsername);
             //Scene wechsel
-            main.Main.loadScene("/viewctrl/logged_in_userView.fxml");
+            main.Main.loadScene("/viewctrl/view_logged_in_user.fxml");
 
             //Title ändern
             main.Main.getPrimaryStage().setTitle("ToDo-Project: logged in as " + loggedInUsername);
         } else {
             //alertBox!
-            System.out.println("alert: " + message);
+            lblStatus.setText(message);
         }
     }
 
     @FXML
     void btnGoToAddUserPressed(ActionEvent event) throws IOException {
-        main.Main.loadScene("/viewctrl/addUserView.fxml");
+        main.Main.loadScene("/viewctrl/view_addUser.fxml");
         main.Main.getPrimaryStage().setTitle("ToDo-Project: Add User");
     }
 
@@ -69,6 +72,7 @@ public class Controller_login implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         dataHandler = main.Main.getDataHandler();
         fileHandler = new FileHandler();
+        lblStatus.setText("");
 
         //Es wird beim Programmstart die init-Methode aufgerufen
         String dateiInhalt;

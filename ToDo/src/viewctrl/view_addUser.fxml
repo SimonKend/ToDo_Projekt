@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="220.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewctrl.Controller_addUser">
+<AnchorPane prefHeight="220.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewctrl.Controller_addUser">
     <children>
         <Label layoutX="96.0" layoutY="14.0" text="Add New User">
             <font>
@@ -24,9 +24,9 @@
         <Separator layoutX="2.0" layoutY="48.0" prefHeight="0.0" prefWidth="318.0" />
         <Separator layoutX="1.0" layoutY="140.0" prefHeight="0.0" prefWidth="318.0" />
 
-        <Button fx:id="btnSave" layoutX="50.0" layoutY="155.0" mnemonicParsing="false" onAction="#btnSavePressed" text="Save User" />
-        <Button fx:id="btnBack" layoutX="190.0" layoutY="155.0" mnemonicParsing="false" onAction="#btnBackPressed" text="Back to Login" />
+        <Button fx:id="btnSave" layoutX="50.0" layoutY="176.0" mnemonicParsing="false" onAction="#btnSavePressed" text="Save User" />
+        <Button fx:id="btnBack" layoutX="190.0" layoutY="176.0" mnemonicParsing="false" onAction="#btnBackPressed" text="Back to Login" />
 
-        <Label fx:id="lblStatus" alignment="CENTER" layoutX="14.0" layoutY="190.0" prefWidth="290.0" text="" textFill="RED" />
+        <Label fx:id="lblStatus" alignment="CENTER" layoutX="15.0" layoutY="147.0" prefWidth="290.0" text="Error Message" textFill="RED" />
     </children>
 </AnchorPane>

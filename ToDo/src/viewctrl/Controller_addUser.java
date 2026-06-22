@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller_addUser implements Initializable {
-    String datei_users = "ToDo_einfaches_login/ToDo/users.txt";
+    String datei_users = "users.txt";
 
     private DataHandler dataHandler;
     private FileHandler fileHandler;
@@ -63,7 +63,7 @@ public class Controller_addUser implements Initializable {
 
     @FXML
     void btnBackPressed(ActionEvent event) throws IOException {
-        main.Main.loadScene("/viewctrl/login.fxml");
+        main.Main.loadScene("/viewctrl/view_login.fxml");
         main.Main.getPrimaryStage().setTitle("ToDo-Project: Login");
     }
 
@@ -71,5 +71,6 @@ public class Controller_addUser implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         dataHandler = main.Main.getDataHandler();
         fileHandler = new FileHandler();
+        lblStatus.setText("");
     }
 }

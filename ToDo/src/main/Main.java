@@ -21,7 +21,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
-        loadScene("/viewctrl/login.fxml");
+        loadScene("/viewctrl/view_login.fxml");
         primaryStage.setTitle("ToDo-Project: Login");
         primaryStage.show();
     }
