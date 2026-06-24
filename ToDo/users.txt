@@ -1,3 +1,4 @@
-simon;109441270
-Max;-1834305558
-admin;-1821428602
+Tom;84274;Tom's ToDo,
+simon;109441270;check GitHub,
+Max;-1834305558;go running,do homework,tidy up room,
+admin;-1821428602;check network,do programming,do admin stuff,
