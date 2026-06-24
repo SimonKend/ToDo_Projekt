@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+simon;109441270;Zimmer zusammenräumen,simonToDo1,simonToDo1,
+Tom;84274;Tom's ToDo,
+Max;-1834305558;go running,do homework,tidy up room,
+admin;-1821428602;check network,do programming,do admin stuff,
+=======
 simon;109441270
 Max;-1834305558
 admin;-1821428602
+>>>>>>> e6b012940e84ec0756b6465421041963433e8904
