@@ -52,11 +52,7 @@ public class Controller_login implements Initializable {
 
             dataHandler.setLoggedInUser(loggedInUsername);
             //Scene wechsel
-<<<<<<< HEAD
             main.Main.loadScene("/viewctrl/view_logged_in_ToDos.fxml");
-=======
-            main.Main.loadScene("/viewctrl/view_logged_in_user.fxml");
->>>>>>> e6b012940e84ec0756b6465421041963433e8904
 
             //Title ändern
             main.Main.getPrimaryStage().setTitle("ToDo-Project: logged in as " + loggedInUsername);
