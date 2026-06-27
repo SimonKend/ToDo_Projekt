@@ -56,6 +56,15 @@ public class User {
         return this.username.equals(usr.username);
     }
 
+    public ToDo getToDo(String name) {
+        for (ToDo x : userToDos) {
+            if (x.getName().equals(name)) {
+                return x;
+            }
+        }
+        return null;
+    }
+
     public int getPasswortGehashed() {
         return passwortGehashed;
     }
