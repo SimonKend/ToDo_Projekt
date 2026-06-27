@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller_logged_in_UserInfos implements Initializable {
+public class Controller_logged_in_General_Infos implements Initializable {
     String datei_users = "users.txt";
     DataHandler dataHandler;
     FileHandler fileHandler;
@@ -61,18 +61,22 @@ public class Controller_logged_in_UserInfos implements Initializable {
         //Title ändern
         main.Main.getPrimaryStage().setTitle("ToDo-Project: Login");
     }
+
     @FXML
     void menuToDosShowed(Event event) {
         System.out.println("ToDo's wurde geöffnet.");
     }
+
     @FXML
     void menuUserInfosShowed(Event event) {
         System.out.println("User Infos wurde geöffnet.");
     }
+
     @FXML
     void menuGeneralInfosShowed(Event event) {
         System.out.println("General Infos wurde geöffnet.");
     }
+
     @FXML
     void btnAddToDoPressed(ActionEvent event) {
         TextInputDialog dialog = new TextInputDialog();
@@ -100,7 +104,7 @@ public class Controller_logged_in_UserInfos implements Initializable {
             HBox hBox = new HBox(10);
             hBox.setPrefHeight(40);
             hBox.setAlignment(Pos.CENTER_LEFT);
-            hBox.setPadding(new Insets(5   , 15, 5, 15));
+            hBox.setPadding(new Insets(5, 15, 5, 15));
 
             //                                                                                                              Insets ist der Abstand vom Hintergrund zur HBox
             hBox.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, new CornerRadii(8), Insets.EMPTY)));

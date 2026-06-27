@@ -61,23 +61,27 @@ public class Controller_logged_in_ToDos implements Initializable {
         //Title ändern
         main.Main.getPrimaryStage().setTitle("ToDo-Project: Login");
     }
+
     @FXML
     void menuToDosShowed(Event event) {
         System.out.println("ToDo's wurde geöffnet.");
     }
+
     @FXML
     void menuUserInfosShowed(Event event) {
         System.out.println("User Infos wurde geöffnet.");
     }
+
     @FXML
     void menuGeneralInfosShowed(Event event) {
         System.out.println("General Infos wurde geöffnet.");
     }
+
     @FXML
     void btnAddToDoPressed(ActionEvent event) {
         TextInputDialog dialog = new TextInputDialog();
 
-        dialog.setTitle("Neues ToDo");
+        dialog.setTitle("New ToDo");
         dialog.setHeaderText(null);
         dialog.setContentText("ToDo:");
 
@@ -100,7 +104,7 @@ public class Controller_logged_in_ToDos implements Initializable {
             HBox hBox = new HBox(10);
             hBox.setPrefHeight(40);
             hBox.setAlignment(Pos.CENTER_LEFT);
-            hBox.setPadding(new Insets(5   , 15, 5, 15));
+            hBox.setPadding(new Insets(5, 15, 5, 15));
 
             //                                                                                                              Insets ist der Abstand vom Hintergrund zur HBox
             hBox.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, new CornerRadii(8), Insets.EMPTY)));
@@ -109,12 +113,16 @@ public class Controller_logged_in_ToDos implements Initializable {
             Label label = new Label(x.getName());
             label.setPrefWidth(150);
 
-            Button button = new Button("Löschen");
-            button.setPrefWidth(80);
+            Button buttonBearbeiten = new Button("🖊");
+            buttonBearbeiten.setPrefWidth(30);
 
-            hBox.getChildren().addAll(label, button);
+            Button buttonLoeschen = new Button("❌");
+            buttonLoeschen.setPrefWidth(30);
 
-            button.setOnAction(e -> {
+
+            hBox.getChildren().addAll(label, buttonBearbeiten, buttonLoeschen);
+
+            buttonLoeschen.setOnAction(e -> {
 
                 dataHandler.getUser(dataHandler.getLoggedInUser())
                         .getUserToDos()
@@ -126,6 +134,28 @@ public class Controller_logged_in_ToDos implements Initializable {
                 fileHandler.dateiSchreiben(datei_users, dataHandler.getUsersSet());
             });
 
+            buttonBearbeiten.setOnAction(e -> {
+                System.out.println("Bearbeiten");
+
+                TextInputDialog dialog = new TextInputDialog();
+
+                dialog.setTitle("New name");
+                dialog.setHeaderText(null);
+                dialog.setContentText("name:");
+
+                dialog.showAndWait().ifPresent(text -> {
+
+                    dataHandler.getUser(dataHandler.getLoggedInUser()).getToDo(x.getName()).setName(text);
+
+                    updateVBox();
+
+                    //schreiben
+                    fileHandler.dateiSchreiben(datei_users, dataHandler.getUsersSet());
+                });
+
+            });
+
+
             vBox.getChildren().add(hBox);
         }
 
@@ -135,6 +165,7 @@ public class Controller_logged_in_ToDos implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         dataHandler = main.Main.getDataHandler();
         fileHandler = new FileHandler();
+
 
         String aktuellerUser = dataHandler.getLoggedInUser();
         labelWelcomeMessage.setText("Hello, " + aktuellerUser + "! You are logged in!");

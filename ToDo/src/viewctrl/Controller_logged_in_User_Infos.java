@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller_logged_in_GeneralInfos implements Initializable {
+public class Controller_logged_in_User_Infos implements Initializable {
     String datei_users = "users.txt";
     DataHandler dataHandler;
     FileHandler fileHandler;
