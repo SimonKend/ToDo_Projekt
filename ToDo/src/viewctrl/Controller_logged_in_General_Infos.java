@@ -4,18 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import main.Main;
 import model.DataHandler;
 import model.FileHandler;
-import model.ToDo;
-import model.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class Controller_logged_in_General_Infos implements Initializable {
@@ -23,11 +19,6 @@ public class Controller_logged_in_General_Infos implements Initializable {
     DataHandler dataHandler;
     FileHandler fileHandler;
 
-    @FXML
-    private Button btnAddToDo;
-
-    @FXML
-    private VBox vBox;
     @FXML
     private Menu infosMenu;
 
@@ -40,118 +31,43 @@ public class Controller_logged_in_General_Infos implements Initializable {
     private Menu userMenu;
 
     @FXML
-    private Button btnLogout;
+    private Button btnCloseProgram;
 
     @FXML
-    private Label labelWelcomeMessage;
+    void btnCloseProgramPressed(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Do you really want to close the program?");
+        alert.setTitle("Confirmation");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        // Überprüfen, welche Schaltfläche der Benutzer gewählt hat
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            Main.getPrimaryStage().close();
+        }
+    }
 
     @FXML
-    private ListView<String> listViewUsernames;
-
-    @FXML
-    private Label lblAdminHeader;
-
-
-    @FXML
-    void btnLogoutPressed(ActionEvent event) throws IOException {
-        dataHandler.setLoggedInUser("Username");
-        //Scene wechsel
-        main.Main.loadScene("/viewctrl/view_login.fxml");
+    void menuToDosShowed(Event event) throws IOException {
+        System.out.println("ToDo's wurde geöffnet.");
+        main.Main.loadScene("/viewctrl/view_logged_in_ToDos.fxml");
 
         //Title ändern
-        main.Main.getPrimaryStage().setTitle("ToDo-Project: Login");
+        main.Main.getPrimaryStage().setTitle("ToDo-Project: " + dataHandler.getLoggedInUser() + ": ToDo's");
     }
 
     @FXML
-    void menuToDosShowed(Event event) {
-        System.out.println("ToDo's wurde geöffnet.");
-    }
-
-    @FXML
-    void menuUserInfosShowed(Event event) {
+    void menuUserInfosShowed(Event event) throws IOException {
         System.out.println("User Infos wurde geöffnet.");
-    }
+        //Scene wechsel
+        main.Main.loadScene("/viewctrl/view_logged_in_User_Infos.fxml");
 
-    @FXML
-    void menuGeneralInfosShowed(Event event) {
-        System.out.println("General Infos wurde geöffnet.");
-    }
-
-    @FXML
-    void btnAddToDoPressed(ActionEvent event) {
-        TextInputDialog dialog = new TextInputDialog();
-
-        dialog.setTitle("Neues ToDo");
-        dialog.setHeaderText(null);
-        dialog.setContentText("ToDo:");
-
-        dialog.showAndWait().ifPresent(text -> {
-
-            dataHandler.getUser(dataHandler.getLoggedInUser()).getUserToDos().add(new ToDo(text));
-
-            updateVBox();
-
-            //schreiben
-            fileHandler.dateiSchreiben(datei_users, dataHandler.getUsersSet());
-        });
-    }
-
-    private void updateVBox() {
-        vBox.getChildren().clear();
-
-        for (ToDo x : dataHandler.getUser(dataHandler.getLoggedInUser()).getUserToDos()) {
-
-            HBox hBox = new HBox(10);
-            hBox.setPrefHeight(40);
-            hBox.setAlignment(Pos.CENTER_LEFT);
-            hBox.setPadding(new Insets(5, 15, 5, 15));
-
-            //                                                                                                              Insets ist der Abstand vom Hintergrund zur HBox
-            hBox.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, new CornerRadii(8), Insets.EMPTY)));
-
-
-            Label label = new Label(x.getName());
-            label.setPrefWidth(150);
-
-            Button button = new Button("Löschen");
-            button.setPrefWidth(80);
-
-            hBox.getChildren().addAll(label, button);
-
-            button.setOnAction(e -> {
-
-                dataHandler.getUser(dataHandler.getLoggedInUser())
-                        .getUserToDos()
-                        .remove(x);
-
-                updateVBox();
-
-                //schreiben
-                fileHandler.dateiSchreiben(datei_users, dataHandler.getUsersSet());
-            });
-
-            vBox.getChildren().add(hBox);
-        }
-
+        //Title ändern
+        main.Main.getPrimaryStage().setTitle("ToDo-Project: " + dataHandler.getLoggedInUser() + ": User Infos");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         dataHandler = main.Main.getDataHandler();
         fileHandler = new FileHandler();
-
-        String aktuellerUser = dataHandler.getLoggedInUser();
-        labelWelcomeMessage.setText("Hello, " + aktuellerUser + "! You are logged in!");
-
-        if (aktuellerUser.equalsIgnoreCase("admin")) {
-            lblAdminHeader.setVisible(true);
-            listViewUsernames.setVisible(true);
-            for (User u : dataHandler.getUsersSet()) {
-                listViewUsernames.getItems().add(u.getUsername());
-            }
-        }
-
-        //Das muss eigentlich bei einem jeden refresh aufgerufen werden
-        updateVBox();
     }
 }

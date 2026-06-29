@@ -2,20 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="429.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewctrl.Controller_logged_in_General_Infos">
    <children>
-      <Button fx:id="btnLogout" layoutX="535.0" layoutY="384.0" mnemonicParsing="false" onAction="#btnLogoutPressed" text="logout" />
-      <Label fx:id="labelWelcomeMessage" layoutX="34.0" layoutY="81.0" text="Hello, Username, you are logged in!" />
-
-      <ListView fx:id="listViewUsernames" layoutX="320.0" layoutY="75.0" prefHeight="300.0" prefWidth="240.0" visible="false" />
-      <Label fx:id="lblAdminHeader" layoutX="320.0" layoutY="25.0" text="All Registered Users (Admin View):" visible="false" />
+      <Button fx:id="btnCloseProgram" layoutX="23.0" layoutY="202.0" mnemonicParsing="false" onAction="#btnCloseProgramPressed" text="close program" />
+      <Label layoutX="34.0" layoutY="81.0" text="General Infos" />
       <MenuBar fx:id="menuBar" layoutX="34.0" layoutY="30.0" prefHeight="25.0" prefWidth="532.0">
         <menus>
           <Menu fx:id="toDoMenu" mnemonicParsing="false" onShowing="#menuToDosShowed" text="Your ToDo's">
@@ -28,15 +23,15 @@
               <MenuItem mnemonicParsing="false" text="User Infos" />
             </items>
           </Menu>
-          <Menu fx:id="infosMenu" mnemonicParsing="false" onShowing="#menuGeneralInfosShowed" text="General Infos">
+          <Menu fx:id="infosMenu" mnemonicParsing="false" text="General Infos">
             <items>
               <MenuItem mnemonicParsing="false" text="General Infos" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <VBox fx:id="vBox" layoutX="34.0" layoutY="135.0" prefHeight="200.0" prefWidth="249.0" spacing="10.0" />
-      <Button fx:id="btnAddToDo" layoutX="305.0" layoutY="143.0" mnemonicParsing="false" onAction="#btnAddToDoPressed" prefWidth="69.0" text="add ToDo" />
-      <Label fx:id="labelWelcomeMessage1" layoutX="34.0" layoutY="106.0" text="Your ToDo's for today:" />
+      <Label fx:id="labelWelcomeMessage1" layoutX="34.0" layoutY="106.0" text="Programmers:" />
+      <Label fx:id="labelWelcomeMessage11" layoutX="40.0" layoutY="124.0" text="Marija Peric" />
+      <Label fx:id="labelWelcomeMessage111" layoutX="40.0" layoutY="142.0" text="Simon Kendel" />
    </children>
 </AnchorPane>

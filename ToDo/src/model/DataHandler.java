@@ -84,6 +84,12 @@ public class DataHandler {
         return "This user doesn't exist.";
     }
 
+    public void deleteUser(String username) {
+      User user;
+      user = getUser(username);
+      usersSet.remove(user);
+    }
+
     public User getUser(String username) {
         for (User x : usersSet) {
             if (x.getUsername().equals(username)) {     //Username vergleichen

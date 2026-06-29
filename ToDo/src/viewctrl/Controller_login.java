@@ -1,5 +1,6 @@
 package viewctrl;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -55,7 +56,8 @@ public class Controller_login implements Initializable {
             main.Main.loadScene("/viewctrl/view_logged_in_ToDos.fxml");
 
             //Title ändern
-            main.Main.getPrimaryStage().setTitle("ToDo-Project: logged in as " + loggedInUsername);
+            main.Main.getPrimaryStage().setTitle("ToDo-Project: " + dataHandler.getLoggedInUser() + ": ToDo's");
+
         } else {
             //alertBox!
             lblStatus.setText(message);
@@ -79,5 +81,9 @@ public class Controller_login implements Initializable {
         dateiInhalt = fileHandler.dateiEinlesen(datei_users);
         dataHandler.init(dateiInhalt);    //Als Parameter der init-Methode wird der Dateiinhalt übergeben
 
+        //Dann ist das Textfeld automatisch ausgewählt
+        Platform.runLater(() -> {
+            tfUsername.requestFocus();
+        });
     }
 }
