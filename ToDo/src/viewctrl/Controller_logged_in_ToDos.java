@@ -62,19 +62,26 @@ public class Controller_logged_in_ToDos implements Initializable {
         main.Main.getPrimaryStage().setTitle("ToDo-Project: Login");
     }
 
-    @FXML
-    void menuToDosShowed(Event event) {
-        System.out.println("ToDo's wurde geöffnet.");
-    }
 
     @FXML
-    void menuUserInfosShowed(Event event) {
+    void menuUserInfosShowed(Event event) throws IOException {
         System.out.println("User Infos wurde geöffnet.");
+        //Scene wechsel
+        main.Main.loadScene("/viewctrl/view_logged_in_User_Infos.fxml");
+
+        //Title ändern
+        main.Main.getPrimaryStage().setTitle("ToDo-Project: " + dataHandler.getLoggedInUser() + ": User Infos");
     }
 
     @FXML
-    void menuGeneralInfosShowed(Event event) {
+    void menuGeneralInfosShowed(Event event) throws IOException {
         System.out.println("General Infos wurde geöffnet.");
+
+        main.Main.loadScene("/viewctrl/view_logged_in_General_Infos.fxml");
+
+        //Title ändern
+        main.Main.getPrimaryStage().setTitle("ToDo-Project: " + dataHandler.getLoggedInUser() + ": General Infos");
+
     }
 
     @FXML
@@ -168,7 +175,7 @@ public class Controller_logged_in_ToDos implements Initializable {
 
 
         String aktuellerUser = dataHandler.getLoggedInUser();
-        labelWelcomeMessage.setText("Hello, " + aktuellerUser + "! You are logged in!");
+        labelWelcomeMessage.setText("Hello, " + aktuellerUser + "! This are your ToDo's:");
 
         if (aktuellerUser.equalsIgnoreCase("admin")) {
             lblAdminHeader.setVisible(true);
