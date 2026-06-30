@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="530.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="viewctrl.Controller_logged_in_user">
+    <children>
+        <MenuBar fx:id="menuBar" layoutX="34.0" layoutY="20.0" prefHeight="25.0" prefWidth="580.0">
+            <menus>
+                <Menu fx:id="toDoMenu" mnemonicParsing="false" onShowing="#menuToDosShowed" text="Your ToDo's">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Your ToDo's" />
+                    </items>
+                </Menu>
+                <Menu fx:id="userMenu" mnemonicParsing="false" onShowing="#menuUserInfosShowed" text="User Infos">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="User Infos" />
+                    </items>
+                </Menu>
+                <Menu fx:id="infosMenu" mnemonicParsing="false" onShowing="#menuGeneralInfosShowed" text="General Infos">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="General Infos" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+
+        <Button fx:id="btnLogout" layoutX="560.0" layoutY="480.0" mnemonicParsing="false" onAction="#btnLogoutPressed" text="Logout" />
+        <Label fx:id="labelWelcomeMessage" layoutX="34.0" layoutY="65.0" text="Hello, Username, you are logged in!" />
+
+        <ListView fx:id="listViewUsernames" layoutX="380.0" layoutY="140.0" prefHeight="320.0" prefWidth="240.0" visible="false" />
+        <Label fx:id="lblAdminHeader" layoutX="380.0" layoutY="115.0" text="All Registered Users (Admin View):" visible="false" />
+
+        <HBox layoutX="34.0" layoutY="100.0" spacing="10.0">
+            <children>
+                <Button fx:id="btnSchule" mnemonicParsing="false" onAction="#btnSchulePressed" text="Schule" style="-fx-background-color: #add8e6;"/>
+                <Button fx:id="btnArbeit" mnemonicParsing="false" onAction="#btnArbeitPressed" text="Arbeit" />
+                <Button fx:id="btnZuHause" mnemonicParsing="false" onAction="#btnZuHausePressed" text="Zu Hause" />
+            </children>
+        </HBox>
+
+        <ScrollPane layoutX="34.0" layoutY="180.0" prefHeight="280.0" prefWidth="320.0">
+            <content>
+                <VBox fx:id="vBox" prefWidth="300.0" spacing="10.0" />
+            </content>
+        </ScrollPane>
+
+        <Button fx:id="btnAddToDo" layoutX="34.0" layoutY="475.0" mnemonicParsing="false" onAction="#btnAddToDoPressed" prefWidth="90.0" text="+ Add ToDo" />
+        <Label fx:id="labelWelcomeMessage1" layoutX="34.0" layoutY="150.0" text="Aktuelle Kategorie: " >
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <Label fx:id="lblAktuelleKategorie" layoutX="150.0" layoutY="150.0" text="Schule" textFill="#005b96">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

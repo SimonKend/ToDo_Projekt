@@ -5,11 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.DataHandler;
 
 import java.io.IOException;
 
 public class Main extends Application {
     private static Stage primaryStage;
+    // Zentraler DataHandler für alle Controller
+    private static DataHandler dataHandler = new DataHandler();
 
     public static void main(String[] args) {
         launch(args);
@@ -18,7 +21,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
-        loadScene("/viewctrl/login.fxml");
+        loadScene("/viewctrl/view_login.fxml");
         primaryStage.setTitle("ToDo-Project: Login");
         primaryStage.show();
     }
@@ -30,5 +33,9 @@ public class Main extends Application {
     //Getter
     public static Stage getPrimaryStage() {
         return primaryStage;
+    }
+    // Getter für die Controller
+    public static DataHandler getDataHandler() {
+        return dataHandler;
     }
 }

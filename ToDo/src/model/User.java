@@ -1,49 +1,65 @@
 package model;
 
-import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 
 public class User {
     private String username;
-    private String passwortNichtGehashed;
+    private int passwortGehashed;
 
-//für später
-/*
-    private int id;
-    private String vorname;
-    private String nachname;
-    private LocalDateTime geburtsdatum;
+    // Die 6 Listen für die 3 Kategorien (jeweils offen und erledigt)
+    private LinkedHashSet<ToDo> schuleOffen = new LinkedHashSet<>();
+    private LinkedHashSet<ToDo> schuleErledigt = new LinkedHashSet<>();
 
-    // nur als Idee
-    private LinkedHashSet<ToDo> userToDos = new LinkedHashSet<>();
+    private LinkedHashSet<ToDo> arbeitOffen = new LinkedHashSet<>();
+    private LinkedHashSet<ToDo> arbeitErledigt = new LinkedHashSet<>();
 
-*/
+    private LinkedHashSet<ToDo> zuHauseOffen = new LinkedHashSet<>();
+    private LinkedHashSet<ToDo> zuHauseErledigt = new LinkedHashSet<>();
 
-
-    public User(String username, String passwortNichtGehashed) {
+    public User(String username, int passwortGehashed) {
         setUsername(username);
-        setPasswortNichtGehashed(passwortNichtGehashed);
+        setPasswortGehashed(passwortGehashed);
     }
 
-    public String getUsername() {
-        return username;
-    }
+    // Getter und Setter für alle 6 Listen
+    public LinkedHashSet<ToDo> getSchuleOffen() { return schuleOffen; }
+    public void setSchuleOffen(LinkedHashSet<ToDo> schuleOffen) { this.schuleOffen = schuleOffen; }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public LinkedHashSet<ToDo> getSchuleErledigt() { return schuleErledigt; }
+    public void setSchuleErledigt(LinkedHashSet<ToDo> schuleErledigt) { this.schuleErledigt = schuleErledigt; }
 
-    public String getPasswortNichtGehashed() {
-        return passwortNichtGehashed;
-    }
+    public LinkedHashSet<ToDo> getArbeitOffen() { return arbeitOffen; }
+    public void setArbeitOffen(LinkedHashSet<ToDo> arbeitOffen) { this.arbeitOffen = arbeitOffen; }
 
-    public void setPasswortNichtGehashed(String passwortNichtGehashed) {
-        this.passwortNichtGehashed = passwortNichtGehashed;
-    }
+    public LinkedHashSet<ToDo> getArbeitErledigt() { return arbeitErledigt; }
+    public void setArbeitErledigt(LinkedHashSet<ToDo> arbeitErledigt) { this.arbeitErledigt = arbeitErledigt; }
+
+    public LinkedHashSet<ToDo> getZuHauseOffen() { return zuHauseOffen; }
+    public void setZuHauseOffen(LinkedHashSet<ToDo> zuHauseOffen) { this.zuHauseOffen = zuHauseOffen; }
+
+    public LinkedHashSet<ToDo> getZuHauseErledigt() { return zuHauseErledigt; }
+    public void setZuHauseErledigt(LinkedHashSet<ToDo> zuHauseErledigt) { this.zuHauseErledigt = zuHauseErledigt; }
+
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+
+    public int getPasswortGehashed() { return passwortGehashed; }
+    public void setPasswortGehashed(int passwortGehashed) { this.passwortGehashed = passwortGehashed; }
 
     @Override
     public String toString() {
-        return "Username: " + username + ", Passwort(nicht gehashed): " + passwortNichtGehashed;
+        return "Username: " + username + ", Passwort(Hash): " + passwortGehashed;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof User)) return false;
+        User usr = (User) obj;
+        return this.username.equals(usr.username);
+    }
+
+    @Override
+    public int hashCode() {
+        return username.hashCode();
     }
 }
